@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Planty Signup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🌿 Planty</h1>
+    <h2>Sign Up</h2>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="signupUser()">
+        Register
+    </button>
+
+    <p>
+        Already have an account?
+        <a href="login.html">Login</a>
+    </p>
+</div>
+
+<script>
+async function signupUser() {
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+
+        const response = await fetch("http://localhost:5000/api/auth/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        alert(data.message);
+
+        if (data.message === "Signup Successful") {
+            window.location.href = "login.html";
+        }
+
+    } catch (error) {
+        alert("Server Error");
+        console.log(error);
+    }
+}
+</script>
+
+</body>
+</html>
