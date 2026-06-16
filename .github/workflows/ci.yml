@@ -27,7 +27,9 @@ jobs:
         run: npm install -g expo-cli
 
       - name: Validate web configuration
-        run: npx expo config --type all
+        env:
+          CI: 1
+        run: npx expo config --type public
 
   android:
     name: Android validation
@@ -48,8 +50,10 @@ jobs:
       - name: Install Expo CLI
         run: npm install -g expo-cli
 
-      - name: Validate Android config
-        run: npx expo config --type android
+      - name: Validate Android configuration
+        env:
+          CI: 1
+        run: npx expo config --type prebuild --platform android
 
   ios:
     name: iOS validation
@@ -70,8 +74,10 @@ jobs:
       - name: Install Expo CLI
         run: npm install -g expo-cli
 
-      - name: Validate iOS config
-        run: npx expo config --type ios
+      - name: Validate iOS configuration
+        env:
+          CI: 1
+        run: npx expo config --type prebuild --platform ios
 
   backend:
     name: Backend syntax check
