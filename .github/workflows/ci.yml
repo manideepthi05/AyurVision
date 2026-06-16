@@ -30,7 +30,9 @@ jobs:
         run: npx expo --version
 
       - name: Run Expo lint
-        run: npx expo lint --non-interactive
+        env:
+          CI: 1
+        run: npx expo lint
 
   web-build:
     name: Web build
