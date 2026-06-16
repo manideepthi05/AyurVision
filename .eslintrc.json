@@ -1,0 +1,6 @@
+{
+  "extends": ["expo", "expo/web"],
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  }
+}
