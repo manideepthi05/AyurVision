@@ -53,7 +53,9 @@ jobs:
       - name: Validate Android configuration
         env:
           CI: 1
-        run: npx expo config --type prebuild
+        run: |
+          npx expo config --type public
+          npx expo config --type prebuild
 
   ios:
     name: iOS validation
@@ -77,7 +79,9 @@ jobs:
       - name: Validate iOS configuration
         env:
           CI: 1
-        run: npx expo config --type prebuild
+        run: |
+          npx expo config --type public
+          npx expo config --type prebuild
 
   backend:
     name: Backend syntax check
