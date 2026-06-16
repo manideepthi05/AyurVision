@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Planty - AI Plant Identifier & Assistant
 
 Planty is a cutting-edge React Native application built with Expo that runs powerful Artificial Intelligence models **100% locally on-device**. It allows users to point their camera at a plant, instantly identify it using computer vision, and receive detailed care instructions and medicinal benefits from a local Large Language Model (LLM)—all without needing an internet connection.
@@ -63,3 +64,6 @@ To keep the repository lightweight and avoid GitHub's file size limits, the AI m
 To ensure the native C++ engines can read these AI models efficiently on Android, we wrote a custom Expo plugin (`plugins/withPlantAssets.js`) which handles two critical steps during the `prebuild` phase:
 * **Asset Copying:** It automatically copies the `.gguf` and `.tflite` files from the `models/` directory directly into `android/app/src/main/assets/`.
 * **noCompress Configuration:** It modifies `app/build.gradle` to set `aaptOptions { noCompress 'gguf', 'tflite' }`. This prevents Android from zipping the model files into the APK. Because the models remain uncompressed, `llama.rn` and `react-native-fast-tflite` can execute them incredibly fast without having to unpack them into memory first!
+=======
+# AyurVision
+>>>>>>> 15dc2fc7ede82710d76adf0dbf5d868c890d2f0b

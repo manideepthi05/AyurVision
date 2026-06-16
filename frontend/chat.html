@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🤖 Planty AI Chat</h1>
+
+    <input type="text"
+           id="question"
+           placeholder="Ask about plants">
+
+    <button onclick="askAI()">
+        Ask
+    </button>
+
+    <h3 id="answer"></h3>
+
+    <button onclick="location.href='dashboard.html'">
+        Back
+    </button>
+
+</div>
+
+<script>
+function askAI()
+{
+    document.getElementById("answer").innerHTML =
+    "Tulsi is a medicinal plant used in Ayurveda.";
+}
+</script>
+
+</body>
+</html>

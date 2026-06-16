@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plant Scan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🌿 Plant Scan</h1>
+
+    <input type="file">
+
+    <button onclick="showResult()">
+        Scan Plant
+    </button>
+
+    <h3 id="result"></h3>
+
+    <button onclick="location.href='dashboard.html'">
+        Back
+    </button>
+
+</div>
+
+<script>
+function showResult()
+{
+    document.getElementById("result").innerHTML =
+    "Plant Detected: Tulsi 🌿 (95% Confidence)";
+}
+</script>
+
+</body>
+</html>
