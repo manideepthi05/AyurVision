@@ -7,8 +7,8 @@ on:
     branches: [main, develop]
 
 jobs:
-  ci:
-    name: CI Build
+  web:
+    name: Web build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -20,23 +20,71 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install root dependencies
+      - name: Install dependencies
         run: npm ci
 
       - name: Install Expo CLI
         run: npm install -g expo-cli
 
-      - name: Validate Expo CLI
-        run: npx expo --version
-
       - name: Export web assets
         run: npx expo export:web --output-dir web-build --non-interactive
+
+  android:
+    name: Android validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Expo CLI
+        run: npm install -g expo-cli
 
       - name: Validate Android config
         run: npx expo config --type android
 
+  ios:
+    name: iOS validation
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Expo CLI
+        run: npm install -g expo-cli
+
       - name: Validate iOS config
         run: npx expo config --type ios
+
+  backend:
+    name: Backend syntax check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install backend dependencies
         working-directory: ./server
