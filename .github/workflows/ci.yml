@@ -7,20 +7,9 @@ on:
     branches: [main, develop]
 
 jobs:
-  lint:
-    name: Lint (skipped)
+  ci:
+    name: CI Build
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Skip lint in CI
-        run: echo "Skipping Expo lint in CI to ensure workflow success"
-
-  web-build:
-    name: Web build
-    runs-on: ubuntu-latest
-    needs: lint
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,80 +20,29 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install root dependencies
         run: npm ci
 
       - name: Install Expo CLI
         run: npm install -g expo-cli
+
+      - name: Validate Expo CLI
+        run: npx expo --version
 
       - name: Export web assets
         run: npx expo export:web --output-dir web-build --non-interactive
 
-  android-check:
-    name: Android config check
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Expo CLI
-        run: npm install -g expo-cli
-
       - name: Validate Android config
         run: npx expo config --type android
 
-  ios-check:
-    name: iOS config check
-    runs-on: macos-latest
-    needs: lint
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Expo CLI
-        run: npm install -g expo-cli
-
       - name: Validate iOS config
         run: npx expo config --type ios
-
-  backend-check:
-    name: Backend syntax check
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
 
       - name: Install backend dependencies
         working-directory: ./server
         run: npm ci
 
-      - name: Validate backend files
+      - name: Validate backend syntax
         working-directory: ./server
         run: |
           node -c index.js
