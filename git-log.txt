@@ -1,0 +1,8 @@
+* 66402b8 (HEAD -> main) Add GitHub Actions workflow
+* 8a50493 Add CI/CD pipeline with Android, iOS, and Web builds
+* 15dc2fc (origin/main) Updated login and signup pages
+* e356e63 Updated MongoDB Atlas connection
+*   a63ee05 git push -u origin main:wqMerge branch 'main' of https://github.com/manideepthi05/AyurVision
+|\  
+| * 62b00a2 Initial commit
+* fa0dc8e Planty Web Full Stack Project
