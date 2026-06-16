@@ -1,0 +1,12 @@
+# Ignore generated native folders
+# EAS will regenerate these on the cloud using our config plugins
+android/
+ios/
+
+# Standard ignores
+node_modules/
+.git/
+.expo/
+dist/
+server/node_modules
+server/.env
